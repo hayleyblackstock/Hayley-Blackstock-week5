@@ -1,0 +1,34 @@
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to 'Create a New Event', new_location_event_path(@location), class:"btn btn-primary"%>
+  </div>
+<strong>Name: </strong> <%= @location.name %> <br>
+<strong>Address: </strong><%= @location.address %> <br>
+<strong> Zip Code: </strong><%= @location.zip_code %>
+</div>
+
+
+<table class="table">
+
+    <strong> Events: </strong>
+
+  <tr>
+    <th> Description </th>
+    <th> Date </th>
+    <th> Requires Id </th>
+  </tr>
+
+  <tbody>
+    <% @location.events.each do |event| %>
+    <tr>
+      <td> <%= event.description %></td>
+      <td> <%= event.date %></td>
+      <td> <%= event.requires_id %></td>
+      <td class="text-right">
+        <%= link_to 'Edit', edit_location_event_path(@location,event), class: "btn btn-primary" %>
+        <%= link_to 'Delete', location_event_path(@location, event), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
